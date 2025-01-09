@@ -1,4 +1,4 @@
-window.WAF_API_KEY = "votre_clé_API"; // Remplacez ceci par votre vraie clé API
+window.WAF_API_KEY = "qbMb7mJtQWD9BC6pyuR5ZWHOHxZIlYgrnR1D/atBqomPaHvmzI1NvnjXkBNmQIe4maAAf2nG+mSQgK4uFS4Oo55OdrvISXvjTgXGhgYueK3jdoZ5LFPtGopABo0SWFQ/NPPM5ooGcHkmXqQvusTyk2YX7iv+07IncHMbKg+zJt6EsyKO+PfesXdxfutPuvliMlm08xmcswrnU56UmhChrp0P7XouECBANj1q/eFLPA8Vr4zx80u20LYv9t5yhKZ3/va+TIQd1lLDfn7A/OkwJadNJDa5BDa9mSOs7/Z2K+CADVy9eiC4eICjshybEw+UFzVSJA4CghTaCvjjqqhk39VmzFSYOn5PbS1lNW5EqKWkoMaanhgBxrQmuW+/vQ+tLhEStMH3cD+f/TBD12TIWd4/azYJ29Lo8eSKQPd0Y2jgW/kdfk6BMkUy6QDOHS1nJBeafxE+wE6UrQvbkp9HEwj+NHhDQSzeFPUnzOBfUStbLB8OjIbpfPLo3eYaSXjNuCwTyvpb0S43giGlJNgKeRqM4IieGApfqf4v4a+9qSB2O/H4W85gvtnqoGwiDGJyxC8q19uFUwYeMcFYBsY9TskIk49Yrd+rTPQ6elcNXMy4JSdYJg4gU0EFpsMwRNWiecYgRMck4Xt7LRVW0sBHVsQTKP/HyJIq9Uh+Sowxs4w=_0_1"; // Remplacez ceci par votre vraie clé API
 
 // Fonction pour générer et afficher la séquence "Forbidden"
 function generateSequence(event) {
