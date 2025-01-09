@@ -1,30 +1,63 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application Web avec Séquence et Captcha</title>
-    <script type="text/javascript" src="https://09bd26e5e726.eu-west-3.captcha-sdk.awswaf.com/09bd26e5e726/jsapi.js" defer></script>
-    <script type="text/javascript" src="app.js" defer></script> 
+    <title>Forbidden Sequence Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            background: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        #captchaModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+        #captchaContent {
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
+     <script type="text/javascript" src="https://09bd26e5e726.eu-west-3.captcha-sdk.awswaf.com/09bd26e5e726/jsapi.js" defer></script>
+     <script type="text/javascript" src="app.js" defer></script> 
 </head>
 <body>
-    <!-- Formulaire pour saisir un nombre -->
-    <div id="captchaForm">
-        <h2>Entrez un nombre entre 1 et 1000</h2>
+    <h1>Forbidden Sequence Generator</h1>
+    <form id="inputForm">
+        <label for="numberInput">Enter a number (1-1000):</label>
         <input type="number" id="numberInput" min="1" max="1000" required>
-        
-        <!-- Bouton qui lance l'affichage de la séquence et du captcha -->
-        <button type="button" onclick="generateSequence()">Submit</button>
-    </div>
+        <button type="submit">Generate</button>
+    </form>
+    
+    <div id="output"></div>
 
-    <!-- Affichage de la séquence "Forbidden" après soumission -->
-    <div id="output" style="display:none;">
-        <h2>Sequence output :</h2>
-        <div id="sequenceOutput"></div>
-    </div>
-
-    <div id="my-captcha-container">
-        <!-- Le widget captcha sera rendu ici -->
+    <div id="captchaModal">
+        <div id="captchaContent">
+            <h2>Captcha Verification</h2>
+            <p>Please solve the captcha below:</p>
+            <div id="captchaContainer"></div>
+            <button id="captchaSolved">I Solved the Captcha</button>
+        </div>
     </div>
 </body>
 </html>
