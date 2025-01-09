@@ -1,8 +1,9 @@
-// Définir la clé API
 window.WAF_API_KEY = "votre_clé_API"; // Remplacez ceci par votre vraie clé API
 
 // Fonction pour générer et afficher la séquence "Forbidden"
-function generateSequence() {
+function generateSequence(event) {
+    event.preventDefault(); // Empêcher le rechargement de la page lors de la soumission du formulaire
+
     const number = parseInt(document.getElementById("numberInput").value);
 
     // Vérifier si le nombre est valide (entre 1 et 1000)
@@ -12,23 +13,33 @@ function generateSequence() {
     }
 
     // Masquer le formulaire et afficher la séquence "Forbidden"
-    document.getElementById("captchaForm").style.display = "none";
+    document.getElementById("inputForm").style.display = "none";
     document.getElementById("output").style.display = "block";
 
     // Générer la séquence "Forbidden"
-    let sequenceHtml = '';
+    let sequenceHtml = "";
     for (let i = 1; i <= number; i++) {
         sequenceHtml += `${i}. Forbidden<br>`;
     }
-    document.getElementById("sequenceOutput").innerHTML = sequenceHtml;
+    document.getElementById("output").innerHTML = `<h2>Generated Sequence:</h2>${sequenceHtml}`;
 
-    // Afficher le Captcha après avoir affiché la séquence
-    var container = document.querySelector("#my-captcha-container");
+    // Afficher le Captcha
+    showCaptcha();
+}
+
+// Fonction pour afficher le Captcha
+function showCaptcha() {
+    const captchaModal = document.getElementById("captchaModal");
+    captchaModal.style.display = "block";
+
+    const container = document.querySelector("#captchaContainer");
     AwsWafCaptcha.renderCaptcha(container, {
         apiKey: window.WAF_API_KEY,
         onSuccess: function(wafToken) {
             // Lorsque le Captcha est validé, effectuer un traitement si nécessaire
             console.log("Captcha validé, WAF Token :", wafToken);
+            captchaModal.style.display = "none";
+            alert("Captcha validé avec succès !");
         },
         onError: captchaExampleErrorFunction,
     });
@@ -37,4 +48,16 @@ function generateSequence() {
 // Fonction appelée en cas d'erreur du Captcha
 function captchaExampleErrorFunction(error) {
     console.error("Erreur de Captcha:", error);
+    alert("Une erreur est survenue avec le Captcha. Veuillez réessayer.");
 }
+
+// Ajouter un gestionnaire d'événements pour le formulaire
+const inputForm = document.getElementById("inputForm");
+inputForm.addEventListener("submit", generateSequence);
+
+// Gestion du bouton "Captcha Solved"
+const captchaSolvedButton = document.getElementById("captchaSolved");
+captchaSolvedButton.addEventListener("click", function() {
+    alert("Merci d'avoir résolu le Captcha !");
+    document.getElementById("captchaModal").style.display = "none";
+});
